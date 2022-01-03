@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Computer-Bikroy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a href="/" class="navbar-brand">Computer-Bikroy</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+           <ul class="navbar-nav">
+                {% if request.user.is_authenticated %}
+                 <li class="nav-item">
+                    <a href="/userview" class="navbar-brand">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/logout" class="navbar-brand">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="/signup" class="navbar-brand">Sign Up</a>
+                </li>
+                 <li class="nav-item">
+                    <a href="/login" class="navbar-brand">Login</a>
+                </li>
+                {%endif%}
+                 <li class="nav-item">
+                    <a href="/product" class="navbar-brand">Post</a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+  <br>
+  <div class="form-group" style="text-align:center">
+<form action="" method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
+     <label >Choose Brand :</label> <br>
+  <select name="brand">
+    <option value="Apple">Apple</option>
+    <option value="Acer">Acer</option>
+    <option value="Asus">Asus</option>
+    <option value="HP">HP</option>
+    <option value="Dell">Dell</option>
+    <option value="Lenovo">Lenovo</option>
+    <option value="Sony">Sony</option>
+    <option value="Samsung">Samsung</option>
+    <option value="Toshiba">Toshiba</option>
+    <option value="Compaq">Compaq</option>
+    <option value="Walton">Walton</option>
+    <option value="Others">Others</option>
+  </select><br>
+<input type="text" name="model" placeholder="model"><br>
+    <label >Condition :</label> <br>
+  <select name="condition">
+    <option value="New">New</option>
+    <option value="Used">Used</option>
+  </select><br>
+<input type="text" name="price" placeholder="price"><br>
+    <textarea name="details" placeholder="write your details here" rows="4" cols="50"></textarea><br>
+<input type="file" name="image"><br><br>
+    <input type="submit"><br>
+</form>
+  </div>
+</body>
+</html>

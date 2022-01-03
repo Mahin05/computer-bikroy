@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Computer-Bikroy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+
+}
+/* setting the text-align property to center*/
+ td {
+  padding: 5px;
+  text-align:center;
+
+}
+ th {
+  padding: 5px;
+  text-align:left;
+
+}
+
+   p {
+    white-space: pre-wrap;
+}
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a href="/" class="navbar-brand">Computer-Bikroy</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav">
+                {% if request.user.is_authenticated %}
+                 <li class="nav-item">
+                    <a href="/userview" class="navbar-brand">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/logout" class="navbar-brand">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="/signup" class="navbar-brand">Sign Up</a>
+                </li>
+                 <li class="nav-item">
+                    <a href="/login" class="navbar-brand">Login</a>
+                </li>
+                {%endif%}
+                 <li class="nav-item">
+                    <a href="/product" class="navbar-brand">Post</a>
+                </li>
+            </ul>
+            <ul class="ml-auto text-info"><span>Developed by Mahin</span></ul>
+        </div>
+
+    </nav>
+    <table  class="table table-bordered" style="width:100%" >
+        <thead class="table-primary">
+        </thead>
+            <tbody>
+            {%for i in data%}
+            <tr>
+                <td><img src="{{i.image.url}}" width="240px" height="240px"> <br>
+                    <b>Location</b> : {{i.user.userprofile.location}} <br>
+                    <b>Brand</b> : {{i.brand}} <br>
+                    <b>Model</b> : {{i.model}}<br>
+                    <b>Condition</b> : {{i.condition}}<br>
+                    <b>posted by</b> : {{i.user}} <br>
+                    <b>Email</b> : {{i.user.email}} <br>
+                   <b>Phone</b> : {{i.user.userprofile.phone}}<br>
+                    <b>Price</b> : {{i.price}}<br><br>
+                    <b>Details</b> : {{i.details}}<br><br>
+                    <b>Posted On</b> : {{i.datentime}}
+                </td>
+<!--                <td><b>Model</b> : {{i.model}}</td>-->
+<!--                <td><b>Price</b> : {{i.price}}</td>-->
+<!--                <td><img src="{{i.image.url}}" width="250px" height="250px"></td>-->
+            </tr>
+            {%endfor%}
+            </tbody>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    {% block body_block %}
+    {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Computer-Bikroy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a href="/" class="navbar-brand">Computer-Bikroy</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+           <ul class="navbar-nav">
+                {% if request.user.is_authenticated %}
+                 <li class="nav-item">
+                    <a href="/userview" class="navbar-brand">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/logout" class="navbar-brand">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="/signup" class="navbar-brand">Sign Up</a>
+                </li>
+                 <li class="nav-item">
+                    <a href="/login" class="navbar-brand">Login</a>
+                </li>
+                {%endif%}
+                 <li class="nav-item">
+                    <a href="/product" class="navbar-brand">Post</a>
+                </li>
+            </ul>
+        </div>
+
+    </nav><br>
+<form action="" method="POST" enctype="multipart/form-data">
+            <div class="form-group" style="text-align:center">
+                {% csrf_token %}
+      <label >Choose Brand :</label> <br>
+  <select name="brand">
+    <option value="Apple">Apple</option>
+    <option value="Acer">Acer</option>
+    <option value="Asus">Asus</option>
+    <option value="HP">HP</option>
+    <option value="Dell">Dell</option>
+    <option value="Lenovo">Lenovo</option>
+    <option value="Sony">Sony</option>
+    <option value="Samsung">Samsung</option>
+    <option value="Toshiba">Toshiba</option>
+    <option value="Compaq">Compaq</option>
+    <option value="Walton">Walton</option>
+    <option value="Others">Others</option>
+  </select><br>
+<!--    <input type="text" name="brand" value="{{data.brand}}"><br><br>-->
+    <input type="text" name="model" value="{{item.model}}"><br><br>
+     <label >Condition :</label> <br>
+  <select name="condition">
+    <option value="New">New</option>
+    <option value="Used">Used</option>
+  </select><br>
+<!--    <input type="text" name="condition" value="{{data.condition}}" readonly><br><br>-->
+    <input type="text" name="price" value="{{item.price}}"><br><br>
+    <input type="text" name="details" value="{{item.details}}"><br><br>
+    <input type="file" name="image"><br><br>
+    <input type="submit" value="Update">
+            </div>
+</form>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

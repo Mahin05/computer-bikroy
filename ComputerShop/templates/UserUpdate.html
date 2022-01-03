@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Computer-Bikroy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a href="/" class="navbar-brand">Computer-Bikroy</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+           <ul class="navbar-nav">
+                {% if request.user.is_authenticated %}
+                 <li class="nav-item">
+                    <a href="/userview" class="navbar-brand">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/logout" class="navbar-brand">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="/signup" class="navbar-brand">Sign Up</a>
+                </li>
+                 <li class="nav-item">
+                    <a href="/login" class="navbar-brand">Login</a>
+                </li>
+                {%endif%}
+                 <li class="nav-item">
+                    <a href="/product" class="navbar-brand">Post</a>
+                </li>
+            </ul>
+        </div>
+
+    </nav><br>
+              <div class="form-group" style="text-align:center">
+<form action="" method="POST">
+    {%csrf_token%}
+<!--    <input type="text" name="username" placeholder="username"><br>-->
+<!--    <input type="email" name="email" placeholder="email"><br>-->
+<!--    <input type="text" name="last_name" placeholder="phone"><br>-->
+<!--    <input type="password" name="password" placeholder="password"><br>-->
+    {%  load crispy_forms_tags %}
+        {{u_form| crispy}}
+    {{p_form|crispy}}
+<br>
+                <input type="submit" value="Update">
+</form><br>
+                  <a href="/DeleteUserProfile">Delete Your Account</a></div>
+</body>
+</html>
